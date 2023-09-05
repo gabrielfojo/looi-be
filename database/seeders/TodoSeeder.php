@@ -16,10 +16,15 @@ class TodoSeeder extends Seeder
     public function run(): void
     {
 
-        $user = User::factory()->create(['name' => 'admin', 'password' => bcrypt('1234'), 'email' => 'fake@admin.com']);
+        $user1 = User::factory()->create(['name' => 'user1', 'password' => bcrypt('1234'), 'email' => 'user1@fake.com']);
+        $user2 = User::factory()->create(['name' => 'user2', 'password' => bcrypt('1234'), 'email' => 'user2@fake.com']);
 
         Todo::factory()
             ->count(5)
-            ->create(['user_id' => $user->id]);
+            ->create(['user_id' => $user1->id]);
+
+        Todo::factory()
+            ->count(5)
+            ->create(['user_id' => $user2->id]);
     }
 }

@@ -73,11 +73,12 @@ class TodoController extends Controller
         $todo->title = $request->title;
         $todo->body = $request->body;
         $todo->color = $request->color ?? null;
-        // $todo->user_id = 2;
+        $todo->done = $request->done ?? $todo->done;
         $todo->save();
 
         return $todo;
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->string('body');
+            $table->text('body');
             $table->string('color')->nullable();
             $table->foreignId('user_id');
+            $table->boolean('done')->default(false);
         });
     }
 

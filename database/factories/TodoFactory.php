@@ -20,7 +20,7 @@ class TodoFactory extends Factory
         return [
             'title' => fake()->sentence(3),
             'body' => fake()->paragraph(),
-            'color' => fake()->safeHexColor(),
+            'color' => '#FFFFCE',
         ];
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -30,5 +32,27 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
+    }
+
+
+    public function signup(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|max:50',
+            'name' => 'required|max:50',
+        ]);
+
+        if ($validator->fails()) {
+            return response('Check your parameters', 400);
+        }
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return $user;
     }
 }
